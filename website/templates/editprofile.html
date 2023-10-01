@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Profile
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    /* Styles from previous responses */
+    .profile-edit-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .profile-edit-container label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .profile-edit-container textarea, 
+    .profile-edit-container input[type="file"] {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    #profile_picture_display {
+        max-width: 100%;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .profile-edit-container input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #0079D3;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.2s;
+    }
+
+    .profile-edit-container input[type="submit"]:hover {
+        background-color: #005FA3;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="profile-edit-container">
+        <h2>Edit Profile</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="bio">Bio:</label>
+            <textarea id="bio" name="bio" rows="4">{{ user.bio }}</textarea> <!-- Removed the required attribute -->
+
+            <label for="profile-picture">Profile Picture:</label>
+            <input type="file" id="profile_picture" name="profile_picture" accept="image/*"> <!-- Removed the required attribute -->
+            <img id="profile_picture_display" src="{{ url_for('auth.get_profile_picture', user_id=user.id) }}" alt="Profile Picture">
+
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</div>
+{% endblock %}

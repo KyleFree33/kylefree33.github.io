@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+{% block styles %}
+    {{ super() }}  {# This pulls in the original content of the block from the base template #}
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landingpage.css') }}" />
+{% endblock %}
+{% block content %}
+<!-- Form to create a new top-level post -->
+{% if current_user.is_authenticated %}
+<div class="center-container">
+<a href="{{ url_for('views.create_post') }}" align="center" class="btn btn-primary" style="background-color: #2c7da0; color: black; font-weight: bold;">Create a Post</a>
+</div>
+{% endif %}
+
+<ul class="list-group list-group-flush" id="posts">
+  {% for post in posts %}
+    <li class="list-group-item" data-post-id="{{ post.id }}">
+      <div class="vote-buttons">
+        {% if current_user.is_authenticated %}
+            <div class="vote-button upvote-button" onclick="upvotePost({{ post.id }})">▲</div>
+            <span id="vote_count_{{ post.id }}">{{ post.vote_count }}</span>
+            <div class="vote-button downvote-button" onclick="downvotePost({{ post.id }})">▼</div>
+        {% else %}
+            <span id="vote_count_{{ post.id }}">{{ post.vote_count }}</span>
+        {% endif %}
+      </div>
+        <!-- User Profile Picture -->
+        <a href="{{ url_for('auth.profile', user_id=post.user_id) }}"> {# Link to the profile of the post's author #}
+          {% if post.user is defined and post.user.profile_picture %}
+          <img src="{{ url_for('auth.get_profile_picture', user_id=post.user_id) }}" alt="{{ post.user.first_name }}'s Profile Picture" width="50">
+          {% else %}
+          <img id="profile_picture_display" src="{{ url_for('auth.get_profile_picture', user_id=user.id) }}" alt="{{ user.first_name }}'s Profile Picture" width="50">
+          {% endif %}
+      </a>
+      <div class="user-name">
+        <a href="{{ url_for('auth.profile', user_id=post.user_id) }}">
+            {{ post.user.first_name }} {{ post.user.last_name }}
+        </a>
+    </div>
+        
+        <div class="post-content">
+          <h1 class="post-title">{{ post.title }}</h1>
+          <div class="post-body">
+              {{ post.data }}
+          </div>
+      </div>
+        
+        <!-- Link to view the full post and its replies -->
+        <a href="{{ url_for('views.post_detail', post_id=post.id) }}" style="color: #64ffda;">View Thread / Reply</a>
+        
+        {% if current_user.is_authenticated and post.user_id == current_user.id %}
+            <button type="button" class="close" onClick="deletePost({{ post.id }})">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        {% endif %}
+        
+    </li>
+{% endfor %}
+</ul>
+<!--
+<p>
+  <h2 class="ch-floating-arrow" id="floating-arrow">
+    <img src="https://static-assets.clubhouseapi.com/static/img/icon_arrow_down.30d965af62c2.svg" alt="scroll for more" height="44">
+  </h2>
+</p>
+-->
+{% endblock %}

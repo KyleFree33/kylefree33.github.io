@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    /* Shared styles with the edit profile page */
+    .profile-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    #profile_picture_display {
+        max-width: 100%;
+        border-radius: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .user-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .user-bio {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="profile-container">
+        <span class="user-name">{{ user.first_name }} {{ user.last_name }}</span>
+        <p class="user-bio">{{ user.bio }}</p>
+        <img id="profile_picture_display" src="{{ url_for('auth.get_profile_picture', user_id=user.id) }}" alt="{{ user.first_name }}'s Profile Picture">
+    </div>
+</div>
+{% endblock %}
