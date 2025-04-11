@@ -16,9 +16,8 @@
 - <b>Democratized Algorithmic Trading</b>  
   Making algo trading more accessible for everyday people. Work in progress.
   Used technologies such as python backtesting library, Trello, AWS.
-  Example of backtesting output:
-  ![Buy and Hold](https://github.com/user-attachments/assets/58af3963-d9f0-44dd-b567-6b89133d4d9c)
-  ![Algorithmic](https://github.com/user-attachments/assets/34a272fe-d713-405b-a03a-94d3b848c962)
+  Example of backtesting output using buy and hold vs a trading algorithm:                                        
+  ![Buy and Hold](https://github.com/user-attachments/assets/58af3963-d9f0-44dd-b567-6b89133d4d9c) ![Algorithmic](https://github.com/user-attachments/assets/34a272fe-d713-405b-a03a-94d3b848c962)
 
 <h2>📘
  Currently Studying</h2>
