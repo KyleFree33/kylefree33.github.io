@@ -15,8 +15,13 @@
 
 - <b>Democratized Algorithmic Trading</b>  
   Making algo trading more accessible for everyday people. Work in progress.
+  Used technologies such as python backtesting library, Trello, AWS.
+  Example of backtesting output:
+  ![Buy and Hold](https://github.com/user-attachments/assets/58af3963-d9f0-44dd-b567-6b89133d4d9c)
+  ![Algorithmic](https://github.com/user-attachments/assets/34a272fe-d713-405b-a03a-94d3b848c962)
 
-<h2>📘 Currently Studying</h2>
+<h2>📘
+ Currently Studying</h2>
 
 - B.S. in Applied Computer Science @ Oregon State University  
 - Expected Grad: June 2025  
